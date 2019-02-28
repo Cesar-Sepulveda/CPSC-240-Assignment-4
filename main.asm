@@ -20,16 +20,16 @@ ExitProcess PROTO, dwExitCode: DWORD
 
 .data
 	myarray DWORD N DUP (?)							;Initializing the array
-	j DWORD ?										;Initializing j
-	K DWORD ?										;Initializing k
+	j DWORD ?								;Initializing j
+	K DWORD ?								;Initializing k
 .code
 
 main PROC
-	mov exc,5										;Moving 5 to eax
-	mov j,-5										;Setting the value of j
-	mov k,5											;Setting the value of k
+	mov exc,5								;Moving 5 to eax
+	mov j,-5								;Setting the value of j
+	mov k,5									;Setting the value of k
 	mov esi, OFFSET myarray
-	call ArrayFill									;Calling the procedure
+	call ArrayFill								;Calling the procedure
 
 
 	INVOKE ExitProcess, 0
@@ -37,20 +37,20 @@ main ENDP
 
 ArrayFill PROC
 
-	mov eax,j										;Moving j to eax 
-	mov ebx,k										;Moving k to ebx
+	mov eax,j								;Moving j to eax 
+	mov ebx,k								;Moving k to ebx
 
 L1:
-	xchg ebx, eax									;Exchanging the values of eax and ebx
-	sub eax,ebx										;Subtracting ebx from eax
-	call RandomRange								;Calling the procedure to generate a random value
-	neg eax											;Changing the sign of eax
-	call WriteInt									;Calling the write integer procedure
+	xchg ebx, eax								;Exchanging the values of eax and ebx
+	sub eax,ebx								;Subtracting ebx from eax
+	call RandomRange							;Calling the procedure to generate a random value
+	neg eax									;Changing the sign of eax
+	call WriteInt								;Calling the write integer procedure
 
-	mov [esi],eax									;Moving the value of eax into the array
-	add esi,4										;Incrementing 
+	mov [esi],eax								;Moving the value of eax into the array
+	add esi,4								;Incrementing 
 
-loop L1												;Looping
+loop L1										;Looping
 ret
 
 ArrayFill ENDP
